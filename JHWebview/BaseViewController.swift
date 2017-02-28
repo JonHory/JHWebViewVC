@@ -148,7 +148,7 @@ class BaseViewController: UIViewController {
         }
         
         if rightBar != nil && rightHelpBar != nil {
-            self.navigationItem.rightBarButtonItems = [rightHelpBar!, rightBar!]
+            self.navigationItem.rightBarButtonItems = [rightBar!, rightHelpBar!]
         } else if rightBar != nil {
             self.navigationItem.rightBarButtonItem = rightBar!
         } else if rightHelpBar != nil {
@@ -160,7 +160,7 @@ class BaseViewController: UIViewController {
     private func handleBtnWithString(btn: UIButton, str:String) {
         btn.setTitle(str, for: .normal)
         btn.setTitleColor(UIColor.red, for: .normal)
-        btn.frame = CGRect(x: 0, y: 0, width: str.sizeWidth(btn: btn), height: 40)
+        btn.frame = CGRect(x: 0, y: 0, width: str.sizeWidth(btn: btn)+10, height: 40)
     }
     
     private func handleBtnWithImage(btn: UIButton, image: UIImage) {
@@ -171,7 +171,8 @@ class BaseViewController: UIViewController {
     private func createBtn(tag: BaseNavType) -> UIButton {
         let btn = UIButton(type: .system)
         btn.tag = tag.rawValue
-        btn.backgroundColor = UIColor.blue
+        btn.backgroundColor = UIColor.purple
+        btn.titleLabel?.backgroundColor = UIColor.lightGray
         btn.addTarget(self, action: #selector(navBtnClicked(btn:)), for: .touchUpInside)
         return btn
     }
@@ -181,6 +182,9 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    deinit {
+        print("释放了\(self)")
+    }
 }
 
 extension BaseViewController: UIGestureRecognizerDelegate {
@@ -189,7 +193,11 @@ extension BaseViewController: UIGestureRecognizerDelegate {
 
 extension String {
     func sizeWidth(btn: UIButton) -> Double {
-        return Double(self.size(attributes: [NSFontAttributeName:
-            UIFont(name: (btn.titleLabel?.font.fontName)!, size: (btn.titleLabel?.font.pointSize)!)!]).width)
+        let fl = self.size(attributes: [NSFontAttributeName:
+            UIFont(name: (btn.titleLabel?.font.fontName)!, size: (btn.titleLabel?.font.pointSize)!)!]).width
+        
+        let db = Double(fl)
+        print("fl = \(fl)  db = \(db)")
+        return db
     }
 }
