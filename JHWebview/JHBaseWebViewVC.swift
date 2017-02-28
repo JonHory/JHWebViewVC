@@ -20,11 +20,9 @@ class JHBaseWebViewVC: BaseViewController {
     /// 进度条
     var progressView: UIProgressView?
     
-    class func create(_ url:String , iOSToJSName: String?) -> JHBaseWebViewVC {
-        let vc = JHBaseWebViewVC()
-        vc.url = url
-        vc.iOSToJSName = iOSToJSName
-        return vc
+    func create(_ url:String , iOSToJSName: String?) {
+        self.url = url
+        self.iOSToJSName = iOSToJSName
     }
     
     override func viewDidLoad() {
@@ -32,13 +30,17 @@ class JHBaseWebViewVC: BaseViewController {
         self.view.backgroundColor = UIColor.white
         
         self.leftHelpBtn?.isHidden = true
-        self.titleLabel?.backgroundColor = UIColor.yellow
         
         if !checkUrlIsSafe() {
             return
         }
         loadWebView()
         loadProgressView()
+    }
+    
+    override func loadNav() {
+        super.loadNav()
+        self.leftHelpBtn?.isHidden = true
     }
     
     override func leftBtnClicked(btn: UIButton) {

@@ -31,6 +31,15 @@ class BaseViewController: UIViewController {
     var rightStr: Any?//可以是String 或者 Image
     var rightHelpStr: Any?//可以是String 或者 Image
     
+    func config(leftStr: Any?, leftHelpStr: Any?, titleStr: String?, rightHelpStr:Any?, rightStr: Any?) {
+        self.leftStr = leftStr
+        self.leftHelpStr = leftHelpStr
+        self.titleStr = titleStr
+        self.rightHelpStr = rightHelpStr
+        self.rightStr = rightStr
+        loadNav()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
@@ -84,6 +93,8 @@ class BaseViewController: UIViewController {
         
     }
     
+    var i = 0
+    
     func loadNav() {
         var leftBar: UIBarButtonItem? = nil
         var leftHelpBar: UIBarButtonItem? = nil
@@ -113,7 +124,7 @@ class BaseViewController: UIViewController {
         if titleStr != nil {
             titleLabel = UILabel()
             titleLabel?.text = titleStr!
-            titleLabel?.textColor = UIColor.red
+            titleLabel?.textColor = UIColor.darkGray
             titleLabel?.sizeToFit()
             self.navigationItem.titleView = titleLabel
         }
@@ -148,7 +159,7 @@ class BaseViewController: UIViewController {
         }
         
         if rightBar != nil && rightHelpBar != nil {
-            self.navigationItem.rightBarButtonItems = [rightHelpBar!, rightBar!]
+            self.navigationItem.rightBarButtonItems = [rightBar!, rightHelpBar!]
         } else if rightBar != nil {
             self.navigationItem.rightBarButtonItem = rightBar!
         } else if rightHelpBar != nil {
@@ -159,8 +170,8 @@ class BaseViewController: UIViewController {
     
     private func handleBtnWithString(btn: UIButton, str:String) {
         btn.setTitle(str, for: .normal)
-        btn.setTitleColor(UIColor.red, for: .normal)
-        btn.frame = CGRect(x: 0, y: 0, width: str.sizeWidth(btn: btn), height: 40)
+        btn.setTitleColor(UIColor.darkGray, for: .normal)
+        btn.frame = CGRect(x: 0, y: 0, width: str.sizeWidth(btn: btn) + 10, height: 40)
     }
     
     private func handleBtnWithImage(btn: UIButton, image: UIImage) {
@@ -171,7 +182,6 @@ class BaseViewController: UIViewController {
     private func createBtn(tag: BaseNavType) -> UIButton {
         let btn = UIButton(type: .system)
         btn.tag = tag.rawValue
-        btn.backgroundColor = UIColor.blue
         btn.addTarget(self, action: #selector(navBtnClicked(btn:)), for: .touchUpInside)
         return btn
     }

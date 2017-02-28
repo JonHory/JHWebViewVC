@@ -19,13 +19,8 @@ class ViewController: UIViewController {
     }
     
     func goWeb() {
-        let vc = TestVC.create("http://www.jianshu.com",iOSToJSName: "xx")
-        vc.leftStr = UIImage(named: "left")
-        vc.leftHelpStr = "关闭"
-        vc.rightStr = "you"
-        vc.titleStr = "hhh"
-        vc.rightHelpStr = "jjj"
-        
+        let vc:TestVC = TestVC()
+        vc.create("http://www.baidu.com", iOSToJSName: "你好")
         self.navigationController?.pushViewController(vc, animated: true)
     }
 
