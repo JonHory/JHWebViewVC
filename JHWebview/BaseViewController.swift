@@ -193,11 +193,7 @@ extension BaseViewController: UIGestureRecognizerDelegate {
 
 extension String {
     func sizeWidth(btn: UIButton) -> Double {
-        let fl = self.size(attributes: [NSFontAttributeName:
-            UIFont(name: (btn.titleLabel?.font.fontName)!, size: (btn.titleLabel?.font.pointSize)!)!]).width
-        
-        let db = Double(fl)
-        print("fl = \(fl)  db = \(db)")
-        return db
+        return Double(self.size(attributes: [NSFontAttributeName:
+            UIFont(name: (btn.titleLabel?.font.fontName)!, size: (btn.titleLabel?.font.pointSize)!)!]).width)
     }
 }
