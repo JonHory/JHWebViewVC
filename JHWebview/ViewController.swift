@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func goWeb() {
+    @objc func goWeb() {
         let vc:TestVC = TestVC()
         vc.create("http://www.baidu.com", iOSToJSName: "你好")
         self.navigationController?.pushViewController(vc, animated: true)

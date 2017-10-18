@@ -178,7 +178,7 @@ extension JHBaseWebViewVC: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
         let host = navigationAction.request.url?.host?.lowercased()
-        print("在发送请求之前，决定是否跳转,链接===\(host)")
+        print("在发送请求之前，决定是否跳转,链接===\(String(describing: host) )")
         if navigationAction.navigationType == .linkActivated  {
             print("跳转到App Store等链接==>>")
             UIApplication.shared.openURL(navigationAction.request.url!)

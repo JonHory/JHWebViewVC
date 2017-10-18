@@ -54,7 +54,7 @@ class BaseViewController: UIViewController {
     }
     
     //MARK:所有按钮点击事件
-    func navBtnClicked(btn: UIButton) {
+    @objc func navBtnClicked(btn: UIButton) {
 
         let tag: BaseNavType = BaseNavType(rawValue: btn.tag)!
         switch tag {
@@ -199,7 +199,7 @@ extension BaseViewController: UIGestureRecognizerDelegate {
 
 extension String {
     func sizeWidth(btn: UIButton) -> Double {
-        return Double(self.size(attributes: [NSFontAttributeName:
+        return Double(self.size(withAttributes: [NSAttributedStringKey.font:
             UIFont(name: (btn.titleLabel?.font.fontName)!, size: (btn.titleLabel?.font.pointSize)!)!]).width)
     }
 }
